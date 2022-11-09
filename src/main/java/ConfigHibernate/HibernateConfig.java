@@ -51,6 +51,9 @@ public class HibernateConfig {
 
     public static void main(String[] args) {
         getFACTORY();
+        
+        
+        
     }
 
 }
