@@ -51,7 +51,7 @@ public class KichThuocRepository {
             kt.setNgaySua(kichthuoc.getNgaySua());
             kt.setTrangThai(kichthuoc.getTrangThai());
             transaction = session.beginTransaction();
-            check = (Integer) session.save(kt);        
+            session.update(kt);        
             transaction.commit();
             return check > 0;
         } catch (Exception e) {
