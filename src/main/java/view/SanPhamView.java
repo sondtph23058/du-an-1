@@ -22,6 +22,7 @@ public class SanPhamView extends javax.swing.JFrame {
 
     public SanPhamView() {
         initComponents();
+        setLocationRelativeTo(null);
         loadCB();
         loadTable(qls.getListSanPham());
     }
@@ -104,7 +105,15 @@ public class SanPhamView extends javax.swing.JFrame {
             new String [] {
                 "Mã San Pham", "Tên San Pham", "Ngày Tạo", "Ngày Sửa", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbSanpham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSanphamMouseClicked(evt);

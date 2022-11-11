@@ -18,6 +18,7 @@ public class MTTView extends javax.swing.JFrame {
 
     public MTTView() {
         initComponents();
+        setLocationRelativeTo(null);
         loadCB();
         loadTable();
     }
@@ -137,7 +138,15 @@ public class MTTView extends javax.swing.JFrame {
             new String [] {
                 "Mã MTT", "Tên MTT", "Ngày Tạo", "Ngày Sửa", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbChucVuMouseClicked(evt);

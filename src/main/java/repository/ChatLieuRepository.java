@@ -20,6 +20,7 @@ public class ChatLieuRepository {
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<CHATLIEU> getList() {
+        session = HibernateConfig.getFACTORY().openSession();
         Query q = session.createQuery("From CHATLIEU");
         ArrayList<CHATLIEU> list = (ArrayList<CHATLIEU>) q.getResultList();
         return list;

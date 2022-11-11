@@ -12,6 +12,7 @@ public class ChucVuRepository {
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<ChucVu> getList() {
+        session = HibernateConfig.getFACTORY().openSession();
         Query q = session.createQuery("From ChucVu");
         ArrayList<ChucVu> list = (ArrayList<ChucVu>) q.getResultList();
         return list;

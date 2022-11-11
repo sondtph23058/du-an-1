@@ -12,6 +12,7 @@ public class SanPhamRepository {
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<SanPham> getList() {
+        session = HibernateConfig.getFACTORY().openSession();
         Query q = session.createQuery("From SanPham");
         ArrayList<SanPham> list = (ArrayList<SanPham>) q.getResultList();
         return list;

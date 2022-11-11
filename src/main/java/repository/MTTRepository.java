@@ -13,6 +13,7 @@ public class MTTRepository {
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<MONTHETHAO> getListMTTSQL() {
+        session = HibernateConfig.getFACTORY().openSession();
         Query q = session.createQuery("From MONTHETHAO");
         ArrayList<MONTHETHAO> list = (ArrayList<MONTHETHAO>) q.getResultList();
         return list;

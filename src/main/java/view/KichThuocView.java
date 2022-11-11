@@ -21,6 +21,7 @@ public class KichThuocView extends javax.swing.JFrame {
 
     public KichThuocView() {
         initComponents();
+        setLocationRelativeTo(null);
         LoadTable(kts.getListKT());
         loadCB();
         txt_maKichThuoc.disable();
@@ -150,7 +151,15 @@ public class KichThuocView extends javax.swing.JFrame {
             new String [] {
                 "MaKichThuoc", "KichThuoc", "NgayTao", "NgaySua", "TrangThai"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tb_kichThuoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb_kichThuocMouseClicked(evt);

@@ -30,6 +30,7 @@ public class CLBView extends javax.swing.JFrame {
 
     public CLBView() {
         initComponents();
+        setLocationRelativeTo(null);
         loadCBMTT();
         loadCB();
         loadTable();
@@ -140,7 +141,15 @@ public class CLBView extends javax.swing.JFrame {
             new String [] {
                 "Mã CLB", "Mã MTT", "Tên Chức Vụ", "Ngày Tạo", "Ngày Sửa", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbChucVuMouseClicked(evt);

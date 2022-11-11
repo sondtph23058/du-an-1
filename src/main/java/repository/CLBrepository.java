@@ -12,6 +12,7 @@ public class CLBrepository {
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<CLB> getList() {
+        session = HibernateConfig.getFACTORY().openSession();
         Query q = session.createQuery("From CLB");
         ArrayList<CLB> list = (ArrayList<CLB>) q.getResultList();
         return list;

@@ -18,6 +18,7 @@ public class ChucVuView extends javax.swing.JFrame {
 
     public ChucVuView() {
         initComponents();
+        setLocationRelativeTo(null);
         loadCB();
         loadTable();
     }
@@ -99,7 +100,15 @@ public class ChucVuView extends javax.swing.JFrame {
             new String [] {
                 "Mã Chức Vụ", "Tên Chức Vụ", "Ngày Tạo", "Ngày Sửa", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbChucVuMouseClicked(evt);

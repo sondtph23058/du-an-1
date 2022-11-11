@@ -18,6 +18,7 @@ public class MauSacView extends javax.swing.JFrame {
      */
     public MauSacView() {
         initComponents();
+        setLocationRelativeTo(null);
         Loadtabale();
 
     }
@@ -108,7 +109,15 @@ public class MauSacView extends javax.swing.JFrame {
             new String [] {
                 "Mã Màu Sắc", "Tên Màu Sắc", "Ngày Tạo", "Ngày Sửa", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tb_bang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb_bangMouseClicked(evt);

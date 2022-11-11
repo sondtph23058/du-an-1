@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -184,10 +184,10 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
-                <Column editable="true" title="M&#xe3; MTT" type="java.lang.Object"/>
-                <Column editable="true" title="T&#xea;n MTT" type="java.lang.Object"/>
-                <Column editable="true" title="Ng&#xe0;y T&#x1ea1;o" type="java.lang.Object"/>
-                <Column editable="true" title="Ng&#xe0;y S&#x1eed;a" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe3; MTT" type="java.lang.Object"/>
+                <Column editable="false" title="T&#xea;n MTT" type="java.lang.Object"/>
+                <Column editable="false" title="Ng&#xe0;y T&#x1ea1;o" type="java.lang.Object"/>
+                <Column editable="false" title="Ng&#xe0;y S&#x1eed;a" type="java.lang.Object"/>
                 <Column editable="true" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
               </Table>
             </Property>

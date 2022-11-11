@@ -117,7 +117,15 @@ public class ChatLieuView extends javax.swing.JFrame {
             new String [] {
                 "Ma", "Ten", "NgayTao", "NgaySUa", "TrangThai"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tb_chatLieu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb_chatLieuMouseClicked(evt);
