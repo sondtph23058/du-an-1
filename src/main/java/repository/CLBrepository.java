@@ -35,19 +35,20 @@ public class CLBrepository {
 
     public Boolean update(CLB CLB, int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            CLB cv = session.get(CLB.class, id);
-            cv.setMAMTT(CLB.getMAMTT());
-            cv.setTENCLB(CLB.getTENCLB());
-            cv.setNGAYTAO(CLB.getNGAYTAO());
-            cv.setNGAYSUA(CLB.getNGAYSUA());
-            cv.setTRANGTHAI(CLB.getTRANGTHAI());
+            CLB clb = session.get(CLB.class, id);
+            clb.setMAMTT(CLB.getMAMTT());
+            clb.setTENCLB(CLB.getTENCLB());
+            clb.setNGAYTAO(CLB.getNGAYTAO());
+            clb.setNGAYSUA(CLB.getNGAYSUA());
+            clb.setTRANGTHAI(CLB.getTRANGTHAI());
 
             transaction = session.beginTransaction();
-            session.save(cv);
+            session.update(clb);
             transaction.commit();
 
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -56,12 +57,13 @@ public class CLBrepository {
 
     public Boolean delete(int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            CLB cv = session.get(CLB.class, id);
+            CLB clb = session.get(CLB.class, id);
             transaction = session.beginTransaction();
-            session.delete(cv);
+            session.delete(clb);
             transaction.commit();
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

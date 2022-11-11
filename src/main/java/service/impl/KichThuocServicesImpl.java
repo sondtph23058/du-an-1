@@ -25,7 +25,7 @@ public class KichThuocServicesImpl implements KichThuocServices {
         if (ktr.add(kichThuoc)) {
             return "Thêm thành công";
         } else {
-            return "Thêm th?t b?i";
+            return "Thêm thất bại";
         }
     }
 
@@ -34,7 +34,7 @@ public class KichThuocServicesImpl implements KichThuocServices {
         if (ktr.update(kichThuoc, id)) {
             return "Sua thành công";
         } else {
-            return "Sua th?t b?i";
+            return "Sua thất bại";
         }
 
     }
@@ -44,7 +44,7 @@ public class KichThuocServicesImpl implements KichThuocServices {
         if (ktr.delete(id)) {
             return "xoa thành công";
         } else {
-            return "xoa th?t b?i";
+            return "xoa thất bại";
         }
     }
 }

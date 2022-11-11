@@ -1,4 +1,3 @@
-
 package repository;
 
 import ConfigHibernate.HibernateConfig;
@@ -9,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class MTTRepository {
-    
+
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<MONTHETHAO> getListMTTSQL() {
@@ -36,18 +35,19 @@ public class MTTRepository {
 
     public Boolean updateMTTSQL(MONTHETHAO montt, int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            MONTHETHAO cv = session.get(MONTHETHAO.class, id);
-            cv.setTENMTT(montt.getTENMTT());
-            cv.setNGAYTAO(montt.getNGAYTAO());
-            cv.setNGAYSUA(montt.getNGAYSUA());
-            cv.setTRANGTHAI(montt.getTRANGTHAI());
-            
+            MONTHETHAO mtt = session.get(MONTHETHAO.class, id);
+            mtt.setTENMTT(montt.getTENMTT());
+            mtt.setNGAYTAO(montt.getNGAYTAO());
+            mtt.setNGAYSUA(montt.getNGAYSUA());
+            mtt.setTRANGTHAI(montt.getTRANGTHAI());
+
             transaction = session.beginTransaction();
-            session.save(cv);
+            session.update(mtt);
             transaction.commit();
-            
-            return true;
+
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -56,12 +56,13 @@ public class MTTRepository {
 
     public Boolean deleteMTTSQL(int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            MONTHETHAO cv = session.get(MONTHETHAO.class, id);
+            MONTHETHAO mtt = session.get(MONTHETHAO.class, id);
             transaction = session.beginTransaction();
-            session.delete(cv);
+            session.delete(mtt);
             transaction.commit();
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

@@ -35,12 +35,13 @@ public class SanPhamRepository {
 
     public Boolean delete(int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             SanPham sp = session.get(SanPham.class, id);
             transaction = session.beginTransaction();
             session.delete(sp);
             transaction.commit();
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -49,6 +50,7 @@ public class SanPhamRepository {
 
     public Boolean update(SanPham sp, int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             SanPham cv = session.get(SanPham.class, id);
             cv.setTensp(sp.getTensp());
@@ -60,7 +62,7 @@ public class SanPhamRepository {
             session.update(cv);
             transaction.commit();
 
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

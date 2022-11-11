@@ -20,7 +20,7 @@ public class KichThuocRepository {
     Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<KICHTHUOC> getList() {
-        session = HibernateConfig.getFACTORY().openSession();
+       Session session = HibernateConfig.getFACTORY().openSession();
         Query q = session.createQuery("From KICHTHUOC");
         ArrayList<KICHTHUOC> list = (ArrayList<KICHTHUOC>) q.getResultList();
         return list;

@@ -35,6 +35,7 @@ public class ChucVuRepository {
 
     public Boolean update(ChucVu chucVu, int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             ChucVu cv = session.get(ChucVu.class, id);
             cv.setTenCV(chucVu.getTenCV());
@@ -43,10 +44,10 @@ public class ChucVuRepository {
             cv.setTrangThai(chucVu.getTrangThai());
             
             transaction = session.beginTransaction();
-            session.save(cv);
+            session.update(cv);
             transaction.commit();
             
-            return true;
+            return check >0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -55,12 +56,13 @@ public class ChucVuRepository {
 
     public Boolean delete(int id) {
         Transaction transaction = null;
+        Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             ChucVu cv = session.get(ChucVu.class, id);
             transaction = session.beginTransaction();
             session.delete(cv);
             transaction.commit();
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

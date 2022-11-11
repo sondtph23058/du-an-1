@@ -7,8 +7,7 @@ package repository;
 import ConfigHibernate.HibernateConfig;
 import java.util.ArrayList;
 import javax.persistence.Query;
-import model.CHATLIEU;
-import model.KICHTHUOC;
+import model.HINHTHUCTHANHTOAN;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,24 +15,25 @@ import org.hibernate.Transaction;
  *
  * @author vuong
  */
-public class ChatLieuRepository {
+public class HTTTRepository {
+
     Session session = HibernateConfig.getFACTORY().openSession();
 
-    public ArrayList<CHATLIEU> getList() {
-        session = HibernateConfig.getFACTORY().openSession();
-        Query q = session.createQuery("From CHATLIEU");
-        ArrayList<CHATLIEU> list = (ArrayList<CHATLIEU>) q.getResultList();
+    public ArrayList<HINHTHUCTHANHTOAN> getList() {
+        Session session = HibernateConfig.getFACTORY().openSession();
+        Query q = session.createQuery("From HINHTHUCTHANHTOAN");
+        ArrayList<HINHTHUCTHANHTOAN> list = (ArrayList<HINHTHUCTHANHTOAN>) q.getResultList();
         return list;
     }
 
-    public Boolean add(CHATLIEU chatlieu) {
+    public Boolean add(HINHTHUCTHANHTOAN httt) {
         Transaction transaction = null;
         Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            check = (Integer) session.save(chatlieu);
+            check = (Integer) session.save(httt);
             transaction.commit();
-            System.err.println("MacHatLieu " + check);
+            System.err.println("MaHTTT " + check);
             return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -41,18 +41,17 @@ public class ChatLieuRepository {
         return null;
     }
 
-    public Boolean update(CHATLIEU chatlieu, int id) {
+    public Boolean update(HINHTHUCTHANHTOAN httt, int id) {
         Transaction transaction = null;
-        
         Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-           CHATLIEU cl = session.get(CHATLIEU.class, id);
-            cl.setTenChatLieu(chatlieu.getTenChatLieu());
-            cl.setNgayTao(chatlieu.getNgayTao());
-            cl.setNgaySua(chatlieu.getNgaySua());
-            cl.setTrangThai(chatlieu.getTrangThai());
+            HINHTHUCTHANHTOAN hinhthucthanhtoan = session.get(HINHTHUCTHANHTOAN.class, id);
+            hinhthucthanhtoan.setTenHTTT(httt.getTenHTTT());
+            hinhthucthanhtoan.setNgayTao(httt.getNgayTao());
+            hinhthucthanhtoan.setNgaySua(httt.getNgaySua());
+            hinhthucthanhtoan.setTrangThai(httt.getTrangThai());
             transaction = session.beginTransaction();
-            check = (Integer) session.save(cl);        
+            session.update(hinhthucthanhtoan);
             transaction.commit();
             return check > 0;
         } catch (Exception e) {
@@ -65,9 +64,9 @@ public class ChatLieuRepository {
         Transaction transaction = null;
         Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            CHATLIEU cl = session.get(CHATLIEU.class, id);
+            HINHTHUCTHANHTOAN hinhthucthanhtoan = session.get(HINHTHUCTHANHTOAN.class, id);
             transaction = session.beginTransaction();
-            session.delete(cl);
+            session.delete(hinhthucthanhtoan);
             transaction.commit();
             return check > 0;
         } catch (Exception e) {

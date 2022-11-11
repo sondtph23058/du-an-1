@@ -5,28 +5,24 @@
 package service.impl;
 
 import java.util.ArrayList;
-import model.CHATLIEU;
-import repository.ChatLieuRepository;
-import service.ChatLieuServices;
+import model.HINHTHUCTHANHTOAN;
+import repository.HTTTRepository;
+import service.HTTTServices;
 
 /**
  *
  * @author vuong
  */
-public class ChatLieuServicesImpl implements ChatLieuServices {
-
-    private ChatLieuRepository clr = new ChatLieuRepository();
-
+public class HTTTServicesImpl implements HTTTServices{
+    private HTTTRepository htttR = new HTTTRepository();
     @Override
-
-    public ArrayList<CHATLIEU> getListKT() {
-        return clr.getList();
-
+    public ArrayList<HINHTHUCTHANHTOAN> getList() {
+        return htttR.getList();
     }
 
     @Override
-    public String add(CHATLIEU chatlieu) {
-        if (clr.add(chatlieu)) {
+    public String add(HINHTHUCTHANHTOAN httt) {
+        if (htttR.add(httt)) {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";
@@ -34,8 +30,8 @@ public class ChatLieuServicesImpl implements ChatLieuServices {
     }
 
     @Override
-    public String update(CHATLIEU chatlieu, int id) {
-        if (clr.update(chatlieu, id)) {
+    public String update(HINHTHUCTHANHTOAN httt, int id) {
+        if (htttR.update(httt, id)) {
             return "update thành công";
         } else {
             return "update thất bại";
@@ -44,11 +40,11 @@ public class ChatLieuServicesImpl implements ChatLieuServices {
 
     @Override
     public String delete(int id) {
-        if (clr.delete(id)) {
+        if (htttR.delete(id)) {
             return "delete thành công";
         } else {
-            return "delete thất bại";
+            return "delete Thất bại";
         }
     }
-
+    
 }

@@ -1,4 +1,3 @@
-
 package view;
 
 import java.sql.Date;
@@ -17,17 +16,17 @@ public class KichThuocView extends javax.swing.JFrame {
      */
     private DefaultTableModel defaultTableModel;
     private DefaultComboBoxModel defaultComboBoxModel;
-    KichThuocServices kts = new KichThuocServicesImpl();
+    private KichThuocServices kts = new KichThuocServicesImpl();
 
     public KichThuocView() {
         initComponents();
         setLocationRelativeTo(null);
-        LoadTable(kts.getListKT());
+        LoadTable();
         loadCB();
         txt_maKichThuoc.disable();
     }
 
-    void LoadTable(ArrayList<KICHTHUOC> list) {
+    void LoadTable() {
         defaultTableModel = (DefaultTableModel) tb_kichThuoc.getModel();
         defaultTableModel.setRowCount(0);
         for (KICHTHUOC kichThuoc : kts.getListKT()) {
@@ -234,7 +233,7 @@ public class KichThuocView extends javax.swing.JFrame {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, kts.add(getData()));
-        LoadTable(kts.getListKT());
+        LoadTable();
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void tb_kichThuocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_kichThuocMouseClicked
@@ -250,9 +249,7 @@ public class KichThuocView extends javax.swing.JFrame {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         // TODO add your handling code here:
-//        int id = tb_kichThuoc.getSelectedRow();
-//        JOptionPane.showMessageDialog(this, kts.update(getData(), id));
-//        LoadTable(kts.getListKT());
+
         int row = tb_kichThuoc.getSelectedRow();
         KICHTHUOC kt = getData();
         if (kt == null) {
@@ -265,7 +262,8 @@ public class KichThuocView extends javax.swing.JFrame {
         String id = tb_kichThuoc.getValueAt(row, 0).toString();
         int ID = (Integer.parseInt(id));
         String traLoi = kts.update(kt, ID);
-        LoadTable(kts.getListKT());
+        JOptionPane.showMessageDialog(this, traLoi);
+        LoadTable();
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
@@ -284,8 +282,7 @@ public class KichThuocView extends javax.swing.JFrame {
         int ID = (Integer.parseInt(id));
         String traLoi = kts.delete(ID);
         JOptionPane.showMessageDialog(this, traLoi);
-        LoadTable(kts.getListKT());
-        
+        LoadTable();
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     /**

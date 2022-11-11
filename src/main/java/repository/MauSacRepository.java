@@ -36,6 +36,7 @@ public class MauSacRepository {
 
     public Boolean update(MauSac mauSac, int id) {
         Transaction transaction = null;
+         Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             MauSac ms = session.get(MauSac.class, id);
 
@@ -44,10 +45,10 @@ public class MauSacRepository {
             ms.setNgaySua(mauSac.getNgaySua());
             ms.setTrangThai(mauSac.getTrangThai());
             transaction = session.beginTransaction();
-            session.save(ms);
+            session.update(ms);
             transaction.commit();
 
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -56,12 +57,13 @@ public class MauSacRepository {
 
     public Boolean delete(int id) {
         Transaction transaction = null;
+         Integer check = 0;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             MauSac ms = session.get(MauSac.class, id);
             transaction = session.beginTransaction();
             session.delete(ms);
             transaction.commit();
-            return true;
+            return check > 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
