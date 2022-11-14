@@ -6,6 +6,7 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,11 +23,19 @@ public class HINHTHUCTHANHTOAN implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name = "MaHTTT")
     private Integer maHTTT;
+    @Column(name = "TenHTTT")
+
     private String tenHTTT;
+    @Column(name = "NgayTao")
+
     private Date ngayTao;
+    @Column(name = "NgaySua")
+
     private Date ngaySua;
+    @Column(name = "TrangThai")
+
     private Integer TrangThai;
 
     public HINHTHUCTHANHTOAN(Integer maHTTT, String tenHTTT, Date ngayTao, Date ngaySua, Integer TrangThai) {
@@ -79,6 +88,5 @@ public class HINHTHUCTHANHTOAN implements Serializable {
     public void setTrangThai(Integer TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
 
 }
